@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>どこかわクイズ ～Aha!Experience～</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- ========================================
+         共通：音ON/OFF
+    ========================================= -->
+    <button
+      id="soundButton"
+      class="sound-button"
+      type="button"
+      aria-label="音のON/OFF"
+    >
+      🔊
+    </button>
+
+
+    <!-- ========================================
+         タイトル画面
+    ========================================= -->
+    <section
+      id="titleScreen"
+      class="screen active"
+    >
+
+      <div class="title-card">
+
+        <div class="logo-mark">
+          ?
+        </div>
+
+        <h1 class="game-logo">
+          <span class="logo-main">
+            どこかわクイズ
+          </span>
+
+          <span class="logo-sub">
+            ～Aha!Experience～
+          </span>
+        </h1>
+
+        <p class="title-description">
+          じーっと見ていると、
+          どこかが少しずつ変わります。
+        </p>
+
+        <button
+          id="gameStartButton"
+          class="main-button"
+          type="button"
+        >
+          スタート
+        </button>
+
+        <button
+          id="historyButton"
+          class="sub-button"
+          type="button"
+        >
+          履歴
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
+         履歴画面
+    ========================================= -->
+    <section
+      id="historyScreen"
+      class="screen"
+    >
+
+      <div class="page-card">
+
+        <h2>
+          プレイ記録
+        </h2>
+
+        <div class="record-box">
+
+          <div class="record-item">
+            <span class="record-label">
+              最高記録
+            </span>
+
+            <strong id="historyBest">
+              0問
+            </strong>
+          </div>
+
+          <div class="record-item">
+            <span class="record-label">
+              プレイ回数
+            </span>
+
+            <strong id="historyPlays">
+              0回
+            </strong>
+          </div>
+
+        </div>
+
+        <button
+          id="historyBackButton"
+          class="main-button"
+          type="button"
+        >
+          タイトルへ
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
+         ゲーム画面
+    ========================================= -->
+    <section
+      id="gameScreen"
+      class="screen"
+    >
+
+      <div class="game-header">
+
+        <div
+          id="questionNumber"
+          class="question-number"
+        >
+          第1問
+        </div>
+
+        <div
+          id="lifeDisplay"
+          class="life-display"
+          aria-label="残りライフ"
+        >
+          ♥ ♥ ♥
+        </div>
+
+      </div>
+
+
+      <div
+        id="guideMessage"
+        class="guide-message"
+      >
+        この中のどこかが変わります
+      </div>
+
+
+      <!-- ====================================
+           画像枠
+      ===================================== -->
+      <div
+        id="imageStage"
+        class="image-stage"
+      >
+
+        <!-- 問題待機中 -->
+        <div
+          id="imageCover"
+          class="image-cover"
+        >
+          ?
+        </div>
+
+        <!-- base画像 -->
+        <img
+          id="baseImage"
+          class="quiz-image"
+          alt=""
+          draggable="false"
+        >
+
+        <!-- 変化部分overlay -->
+        <img
+          id="changeImage"
+          class="quiz-image change-image"
+          alt=""
+          draggable="false"
+        >
+
+        <!-- タップ表示 -->
+        <div
+          id="answerMarkerLayer"
+          class="marker-layer"
+        ></div>
+
+      </div>
+
+
+      <!-- ====================================
+           進行バー
+      ===================================== -->
+      <div
+        id="progressArea"
+        class="progress-area hidden"
+      >
+
+        <div class="progress-track">
+          <div
+            id="progressBar"
+            class="progress-bar"
+          ></div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================
+           判定メッセージ
+      ===================================== -->
+      <div
+        id="resultMessage"
+        class="result-message"
+      ></div>
+
+
+      <!-- ====================================
+           問題スタート
+      ===================================== -->
+      <button
+        id="questionStartButton"
+        class="main-button game-start-button"
+        type="button"
+      >
+        スタート
+      </button>
+
+    </section>
+
+
+    <!-- ========================================
+         GAME OVER
+    ========================================= -->
+    <section
+      id="gameOverScreen"
+      class="screen"
+    >
+
+      <div class="page-card">
+
+        <h2
+          id="gameOverTitle"
+          class="game-over-title"
+        >
+          GAME OVER
+        </h2>
+
+        <div class="record-box">
+
+          <div class="record-item">
+            <span class="record-label">
+              今回の記録
+            </span>
+
+            <strong id="currentScoreResult">
+              0問
+            </strong>
+          </div>
+
+          <div class="record-item">
+            <span class="record-label">
+              最高記録
+            </span>
+
+            <strong id="bestScoreResult">
+              0問
+            </strong>
+          </div>
+
+        </div>
+
+        <button
+          id="gameOverBackButton"
+          class="main-button"
+          type="button"
+        >
+          タイトルへ
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================
+       効果音
+  ========================================= -->
+
+  <audio
+    id="startSound"
+    src="sounds/start.mp3"
+    preload="auto"
+  ></audio>
+
+  <audio
+    id="correctSound"
+    src="sounds/correct.mp3"
+    preload="auto"
+  ></audio>
+
+  <audio
+    id="wrongSound"
+    src="sounds/wrong.mp3"
+    preload="auto"
+  ></audio>
+
+  <audio
+    id="gameOverSound"
+    src="sounds/gameover.mp3"
+    preload="auto"
+  ></audio>
+
+
+  <!-- 問題データを先に読み込む -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

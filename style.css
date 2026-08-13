@@ -1,0 +1,704 @@
+:root {
+  --bg: #f4f0e7;
+  --panel: #fffdf7;
+
+  --text: #263238;
+  --muted: #687277;
+
+  --main: #346b6a;
+  --main-dark: #285554;
+
+  --accent: #d9a34a;
+
+  --line: #d8d4c8;
+
+  --correct: #d93434;
+  --wrong: #313942;
+
+  --heart: #bd4a4a;
+
+  --radius-large: 24px;
+  --radius-medium: 16px;
+
+  --shadow:
+    0 10px 28px rgba(50, 58, 55, 0.10);
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+
+body {
+  min-height: 100dvh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7f3eb 0%,
+      #efebe2 100%
+    );
+
+  color: var(--text);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button {
+  font-family: inherit;
+}
+
+
+.app {
+  position: relative;
+
+  width: min(100%, 520px);
+
+  min-height: 100dvh;
+
+  margin: 0 auto;
+
+  padding:
+    max(18px, env(safe-area-inset-top))
+    16px
+    max(28px, env(safe-area-inset-bottom));
+}
+
+
+/* ========================================
+   画面
+======================================== */
+
+.screen {
+  display: none;
+
+  min-height:
+    calc(
+      100dvh - 46px
+    );
+}
+
+
+.screen.active {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+/* ========================================
+   音ON/OFF
+======================================== */
+
+.sound-button {
+  position: fixed;
+
+  z-index: 100;
+
+  top:
+    max(
+      12px,
+      env(safe-area-inset-top)
+    );
+
+  right: max(
+    12px,
+    calc(
+      (100vw - 520px) / 2 + 12px
+    )
+  );
+
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 253, 247, 0.94);
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.08);
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+/* ========================================
+   タイトル
+======================================== */
+
+.title-card,
+.page-card {
+  width: 100%;
+
+  padding: 30px 22px;
+
+  background: var(--panel);
+
+  border: 1px solid rgba(80, 80, 60, 0.08);
+
+  border-radius: var(--radius-large);
+
+  box-shadow: var(--shadow);
+
+  text-align: center;
+}
+
+
+.logo-mark {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 18px;
+
+  border-radius:
+    45% 55% 52% 48% /
+    55% 45% 55% 45%;
+
+  background: var(--main);
+
+  color: white;
+
+  font-size: 38px;
+
+  font-weight: 900;
+
+  transform: rotate(-4deg);
+}
+
+
+.game-logo {
+  margin: 0;
+
+  line-height: 1.25;
+}
+
+
+.logo-main {
+  display: block;
+
+  font-size:
+    clamp(
+      2rem,
+      9vw,
+      2.8rem
+    );
+
+  font-weight: 900;
+
+  letter-spacing: 0.03em;
+}
+
+
+.logo-sub {
+  display: block;
+
+  margin-top: 9px;
+
+  color: var(--main);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+}
+
+
+.title-description {
+  margin:
+    26px auto 28px;
+
+  max-width: 310px;
+
+  color: var(--muted);
+
+  line-height: 1.8;
+
+  font-size: 0.98rem;
+}
+
+
+/* ========================================
+   ボタン
+======================================== */
+
+.main-button,
+.sub-button {
+  width: 100%;
+
+  min-height: 56px;
+
+  border: 0;
+
+  border-radius: 16px;
+
+  font-size: 1.05rem;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.main-button {
+  background: var(--main);
+
+  color: white;
+
+  box-shadow:
+    0 6px 0 var(--main-dark);
+}
+
+
+.main-button:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 3px 0 var(--main-dark);
+}
+
+
+.sub-button {
+  margin-top: 16px;
+
+  background: #ece8de;
+
+  color: var(--text);
+}
+
+
+/* ========================================
+   履歴
+======================================== */
+
+.page-card h2 {
+  margin: 0 0 26px;
+
+  font-size: 1.7rem;
+}
+
+
+.record-box {
+  margin-bottom: 28px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: var(--radius-medium);
+
+  overflow: hidden;
+}
+
+
+.record-item {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  background: #fff;
+}
+
+
+.record-item + .record-item {
+  border-top:
+    1px solid var(--line);
+}
+
+
+.record-label {
+  color: var(--muted);
+
+  font-size: 0.95rem;
+}
+
+
+.record-item strong {
+  font-size: 1.3rem;
+}
+
+
+/* ========================================
+   ゲーム画面
+======================================== */
+
+#gameScreen.active {
+  justify-content: flex-start;
+}
+
+
+.game-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 36px;
+  margin-bottom: 10px;
+}
+
+
+.question-number {
+  font-size: 1rem;
+
+  font-weight: 800;
+
+  color: var(--muted);
+}
+
+
+.life-display {
+  color: var(--heart);
+
+  font-size: 1.45rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+}
+
+
+.guide-message {
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+
+  font-weight: 800;
+
+  text-align: center;
+
+  line-height: 1.4;
+}
+
+
+/* ========================================
+   画像
+======================================== */
+
+.image-stage {
+  position: relative;
+
+  width: 90%;
+
+  aspect-ratio: 1 / 1;
+
+  margin: 0 auto;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  background:
+    #e7e5dd;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.14);
+
+  user-select: none;
+
+  touch-action: manipulation;
+}
+
+
+.quiz-image {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+.change-image {
+  opacity: 0;
+}
+
+
+.image-cover {
+  position: absolute;
+
+  z-index: 20;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e8e4da,
+      #d9ded9
+    );
+
+  color: #7b8582;
+
+  font-size: 4rem;
+
+  font-weight: 900;
+}
+
+
+.image-cover.hidden {
+  display: none;
+}
+
+
+/* ========================================
+   マーカー
+======================================== */
+
+.marker-layer {
+  position: absolute;
+
+  z-index: 30;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+.tap-marker {
+  position: absolute;
+
+  transform:
+    translate(-50%, -50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+
+.correct-marker {
+  width: 68px;
+  height: 68px;
+
+  border:
+    6px solid var(--correct);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.wrong-marker {
+  width: 48px;
+  height: 48px;
+}
+
+
+.wrong-marker::before,
+.wrong-marker::after {
+  content: "";
+
+  position: absolute;
+
+  top: 21px;
+  left: 2px;
+
+  width: 44px;
+  height: 6px;
+
+  border-radius: 10px;
+
+  background: var(--wrong);
+}
+
+
+.wrong-marker::before {
+  transform: rotate(45deg);
+}
+
+
+.wrong-marker::after {
+  transform: rotate(-45deg);
+}
+
+
+/* ========================================
+   プログレスバー
+======================================== */
+
+.progress-area {
+  width: 90%;
+
+  margin:
+    16px auto 0;
+}
+
+
+.progress-area.hidden {
+  visibility: hidden;
+}
+
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #d9ddd9;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+
+  transform-origin: left center;
+
+  background: var(--main);
+}
+
+
+/* ========================================
+   判定表示
+======================================== */
+
+.result-message {
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 8px;
+
+  font-size: 1.25rem;
+
+  font-weight: 900;
+}
+
+
+.result-message.correct {
+  color: var(--correct);
+}
+
+
+.result-message.wrong {
+  color: var(--wrong);
+}
+
+
+/* ========================================
+   問題スタート
+======================================== */
+
+.game-start-button {
+  width: 88%;
+
+  margin:
+    4px auto 0;
+}
+
+
+.game-start-button.hidden {
+  display: none;
+}
+
+
+/* ========================================
+   GAME OVER
+======================================== */
+
+.game-over-title {
+  color: #39444a;
+
+  letter-spacing: 0.06em;
+}
+
+
+.game-over-title.time-up {
+  color: #9a5c32;
+}
+
+
+/* ========================================
+   小型端末
+======================================== */
+
+@media
+(max-height: 720px) {
+
+  .game-header {
+    margin-top: 22px;
+  }
+
+
+  .guide-message {
+    min-height: 38px;
+  }
+
+
+  .image-stage {
+    width: 82%;
+  }
+
+
+  .progress-area {
+    width: 82%;
+  }
+
+
+  .game-start-button {
+    width: 82%;
+  }
+
+}
