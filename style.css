@@ -415,7 +415,7 @@ button {
 .image-stage {
   position: relative;
 
-  width: 90%;
+  width: 96%;
 
   aspect-ratio: 1 / 1;
 
@@ -573,7 +573,7 @@ button {
 ======================================== */
 
 .progress-area {
-  width: 90%;
+  width: 96%;
 
   margin:
     16px auto 0;
@@ -688,17 +688,17 @@ button {
 
 
   .image-stage {
-    width: 82%;
+    width: 94%;
   }
 
 
   .progress-area {
-    width: 82%;
+    width: 94%;
   }
 
 
   .game-start-button {
-    width: 82%;
+    width: 94%;
   }
 
 }
